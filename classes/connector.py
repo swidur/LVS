@@ -8,4 +8,4 @@ class Connector:
     @staticmethod
     def connect():
         """Connect to the PostgreSQL database.  Returns a database connection."""
-        return psycopg2.connect("dbname='lvm' user='postgres' host='localhost' password='***********'")
+        return psycopg2.connect("DBNAME='lvm' USER='postgres' HOST='localhost' PASSWORD='XXXX'")

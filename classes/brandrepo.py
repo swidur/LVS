@@ -13,15 +13,16 @@ class BrandRepo:
     def select_one(self, b_id):
         db = self.connection
         c = db.cursor()
-        c.execute('select * from Brands where id={};'.format(b_id))
+        c.execute('SELECT * FROM brands WHERE brand_id = {};'.format(b_id))
         brand = c.fetchone()
         return self.create_brand(brand)
 
     def select_all(self):
         db = self.connection
         c = db.cursor()
-        c.execute('select * from Brands;')
+        c.execute('SELECT * FROM brands;')
         brands = []
         for brand in c.fetchall():
             brands.append(BrandRepo.create_brand(brand))
         return brands
+
