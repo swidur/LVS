@@ -1,11 +1,16 @@
-import psycopg2
+import sqlite3 as lite
 
 
 class Connector:
-    def __init__(self):
-        pass
+    def __init__(self, path='default.db'):
+        self.path = path
+        self.default = 'default.db'
 
-    @staticmethod
-    def connect():
-        """Connect to the PostgreSQL database.  Returns a database connection."""
-        return psycopg2.connect("DBNAME='lvm' USER='postgres' HOST='localhost' PASSWORD='XXXX'")
+    def connect(self):
+        """Connect to the SQLite database. Returns a database connection."""
+
+        try:
+            return lite.connect(self.path)
+
+        except lite.OperationalError:
+            return lite.connect(self.default)
